@@ -45,11 +45,7 @@ public class lesson1 {
 
     private static boolean ex4(int num1, int num2) {
         System.out.println("Задание №4.");
-        if (10 <= num1 + num2 && num1 + num2 <= 20) {
-            return true;
-        } else {
-            return false;
-        }
+        return 10 <= num1 + num2 && num1 + num2 <= 20;
     }
 
     private static void ex5(int num) {
@@ -58,7 +54,9 @@ public class lesson1 {
             System.out.println("Введенное Вами число: " + num + " -- отрицательное");
         } else if (num >= 0) {
             System.out.println("Введенное Вами число: " + num + " -- положительное");
-        } else System.out.println("Введены некорректные данные");
+        } else {
+            System.out.println("Введены некорректные данные");
+        }
     }
 
     private static boolean ex6(int num) {
@@ -78,7 +76,9 @@ public class lesson1 {
             System.out.println("Введенный Вами год: " + years + " -- високосный");
         } else if (years % 4 == 0 && years % 100 != 0) {
             System.out.println("Введенный Вами год: " + years + " -- високосный");
-        } else System.out.println("Введенный Вами год: " + years + " -- невисокосный");
+        } else {
+            System.out.println("Введенный Вами год: " + years + " -- невисокосный");
+        }
     }
 
 }
