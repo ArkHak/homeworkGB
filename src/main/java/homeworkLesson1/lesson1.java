@@ -45,7 +45,7 @@ public class lesson1 {
 
     private static boolean ex4(int num1, int num2) {
         System.out.println("Задание №4.");
-        return 10 <= num1 + num2 && num1 + num2 <= 20
+        return 10 <= num1 + num2 && num1 + num2 <= 20;
     }
 
     private static void ex5(int num) {
