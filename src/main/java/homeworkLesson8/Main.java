@@ -61,11 +61,12 @@ public class Main {
         String typeObstacle;
         for (ActionsParticipant participant : participantsArray) {
             participant.ad();
+            typeObstacle = "Treadmill";
             for (OvercomeObstacle let : letsArray) {
-                typeObstacle = (let.toString().replace("homeworkLesson8.", "").split("@")[0]);
                 if (participant.winnerIs()) {
                     switch (typeObstacle) {
                         case "Treadmill" -> {
+                            typeObstacle = "Wall";
                             if (let.overcomingObstacle(participant.getMaxLengthRun())) {
                                 let.overcomingPlus(participant.whoIs());
                                 participant.setMaxLengthRun(participant.getMaxLengthRun() - let.getOvercoming());
@@ -74,6 +75,7 @@ public class Main {
                             }
                         }
                         case "Wall" -> {
+                            typeObstacle = "Treadmill";
                             if (let.overcomingObstacle(participant.getMaxHeightJump())) {
                                 let.overcomingPlus(participant.whoIs());
                             } else {
@@ -86,4 +88,35 @@ public class Main {
             endWinner(participant);
         }
     }
+
+//жульническая реализация.
+//    private static void homeworkFull(ActionsParticipant[] participantsArray, OvercomeObstacle[] letsArray) {
+//        String typeObstacle;
+//        for (ActionsParticipant participant : participantsArray) {
+//            participant.ad();
+//            for (OvercomeObstacle let : letsArray) {
+//                typeObstacle = (let.toString().replace("homeworkLesson8.", "").split("@")[0]);
+//                if (participant.winnerIs()) {
+//                    switch (typeObstacle) {
+//                        case "Treadmill" -> {
+//                            if (let.overcomingObstacle(participant.getMaxLengthRun())) {
+//                                let.overcomingPlus(participant.whoIs());
+//                                participant.setMaxLengthRun(participant.getMaxLengthRun() - let.getOvercoming());
+//                            } else {
+//                                overcomingFailed(participant, let);
+//                            }
+//                        }
+//                        case "Wall" -> {
+//                            if (let.overcomingObstacle(participant.getMaxHeightJump())) {
+//                                let.overcomingPlus(participant.whoIs());
+//                            } else {
+//                                overcomingFailed(participant, let);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            endWinner(participant);
+//        }
+//    }
 }
