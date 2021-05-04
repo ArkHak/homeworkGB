@@ -1,8 +1,6 @@
 package homeworkLesson9;
 
-import java.io.IOException;
-
-public class MyArrayDataException extends IOException {
+public class MyArrayDataException extends NumberFormatException  {
     int i, j;
 
     public MyArrayDataException(int i, int j) {

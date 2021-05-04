@@ -24,6 +24,9 @@ public class Main {
             System.err.println(e.getMessage());
         } catch (MyArrayDataException e) {
             System.err.println(e.getMessage());
+        } finally {
+            in.close();
+            System.out.println("Конец работы программы");
         }
 
     }
@@ -41,7 +44,6 @@ public class Main {
         }
         System.out.println("Созданный массив: ");
         printArray(arr);
-        in.close();
     }
 
     private static void printArray(String[][] arr) {
