@@ -9,23 +9,13 @@ public class Wall implements OvercomeObstacle {
     }
 
     @Override
-    public boolean overcomingObstacle(int measure) {
-        return this.heightWall <= measure;
+    public boolean passing(ActionsParticipant participant) {
+        if (this.heightWall <= participant.getMaxHeightJump()) {
+            System.out.printf("%s перепрыгнул стену в %d м.\n", participant.whoIs(), this.heightWall);
+            return true;
+        } else {
+            System.out.printf("%s НЕперепрыгнул стену в %d м.\n", participant.whoIs(), this.heightWall);
+            return false;
+        }
     }
-
-    @Override
-    public void overcomingPlus(String whoIs) {
-        System.out.println(whoIs + " перепрыгнул препятствие.");
-    }
-
-    @Override
-    public void overcomingMinus(String whoIs) {
-        System.out.println(whoIs + " НЕперепрыгнул препятствие.");
-    }
-
-    @Override
-    public int getOvercoming() {
-        return 0;
-    }
-
 }

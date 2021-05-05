@@ -9,24 +9,15 @@ public class Treadmill implements OvercomeObstacle {
     }
 
     @Override
-    public boolean overcomingObstacle(int measure) {
-        return this.lengthTreadmill <= measure;
+    public boolean passing(ActionsParticipant participant) {
+        int differentDistance = participant.getMaxLengthRun() - this.lengthTreadmill;
+        if (differentDistance >= 0) {
+            participant.setMaxLengthRun(differentDistance);
+            System.out.printf("%s смог пробежать дистанцию в %d м.\n", participant.whoIs(), this.lengthTreadmill);
+            return true;
+        } else {
+            System.out.printf("%s НЕсмог пробежать дистанцию в %d м.\n", participant.whoIs(), this.lengthTreadmill);
+            return false;
+        }
     }
-
-    @Override
-    public void overcomingPlus(String whoIs) {
-        System.out.println(whoIs + " пробежал препятствие.");
-    }
-
-    @Override
-    public void overcomingMinus(String whoIs) {
-        System.out.println(whoIs + " НЕ СМОГ пробежать дистанцию.");
-    }
-
-
-    @Override
-    public int getOvercoming() {
-        return this.lengthTreadmill;
-    }
-
 }

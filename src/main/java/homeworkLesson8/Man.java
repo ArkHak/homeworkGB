@@ -11,6 +11,10 @@ public class Man implements ActionsParticipant {
         this.maxHeightJump = maxHeightJump;
     }
 
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
 
     @Override
     public void run() {
@@ -31,10 +35,6 @@ public class Man implements ActionsParticipant {
         return "Человек";
     }
 
-    @Override
-    public void failed() {
-        this.winner = false;
-    }
 
     public boolean winnerIs() {
         return this.winner;
@@ -49,7 +49,21 @@ public class Man implements ActionsParticipant {
     }
 
     @Override
+    public void endWinner() {
+        if (this.winner) {
+            System.out.println(whoIs() + " преодолел полосу препятсвий. Молодец!\n");
+        } else {
+            System.out.println(whoIs() + " НЕпреодолел полосу препятсвий.\n");
+        }
+    }
+
+    @Override
     public void ad() {
-        System.out.println("Начинает проходить препятствия - Человек");
+        System.out.println("***Начинает проходить препятствия - Человек***");
+        System.out.printf("""
+                Начальные статы:
+                Бег: %d,
+                Прыжок: %d
+                """, this.maxLengthRun, this.maxHeightJump);
     }
 }

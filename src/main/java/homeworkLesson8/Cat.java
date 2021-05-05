@@ -25,6 +25,15 @@ public class Cat implements ActionsParticipant {
     }
 
     @Override
+    public void endWinner() {
+        if (this.winner) {
+            System.out.println(whoIs() + " преодолел полосу препятсвий. Молодец!\n");
+        } else {
+            System.out.println(whoIs() + " НЕпреодолел полосу препятсвий.\n");
+        }
+    }
+
+    @Override
     public void jump() {
         System.out.println("Кот прыгнул");
     }
@@ -38,10 +47,6 @@ public class Cat implements ActionsParticipant {
         return "Кот";
     }
 
-    @Override
-    public void failed() {
-        this.winner = false;
-    }
 
     @Override
     public boolean winnerIs() {
@@ -50,6 +55,15 @@ public class Cat implements ActionsParticipant {
 
     @Override
     public void ad() {
-        System.out.println("Начинает проходить препятствия - Кот");
+        System.out.println("***Начинает проходить препятствия - Кот***");
+        System.out.printf("""
+                Начальные статы:
+                Бег: %d,
+                Прыжок: %d
+                """, this.maxLengthRun, this.maxHeightJump);
+    }
+
+    public void setWinner(boolean winner) {
+        this.winner = winner;
     }
 }

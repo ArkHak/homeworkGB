@@ -21,6 +21,10 @@ public class Robot implements ActionsParticipant {
         System.out.println("Робот прыгнул");
     }
 
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
     public int getMaxHeightJump() {
         return maxHeightJump;
     }
@@ -30,10 +34,6 @@ public class Robot implements ActionsParticipant {
         return "Робот";
     }
 
-    @Override
-    public void failed() {
-        this.winner = false;
-    }
 
     public boolean winnerIs() {
         return this.winner;
@@ -48,7 +48,21 @@ public class Robot implements ActionsParticipant {
     }
 
     @Override
+    public void endWinner() {
+        if (this.winner) {
+            System.out.println(whoIs() + " преодолел полосу препятсвий. Молодец!\n");
+        } else {
+            System.out.println(whoIs() + " НЕпреодолел полосу препятсвий.\n");
+        }
+    }
+
+    @Override
     public void ad() {
-        System.out.println("Начинает проходить препятствия - Робот");
+        System.out.println("***Начинает проходить препятствия - Робот***");
+        System.out.printf("""
+                Начальные статы:
+                Бег: %d,
+                Прыжок: %d
+                """, this.maxLengthRun, this.maxHeightJump);
     }
 }

@@ -12,11 +12,13 @@ public interface ActionsParticipant {
 
     String whoIs();
 
-    void failed();
-
     boolean winnerIs();
+
+    void setWinner(boolean winner);
 
     int getMaxLengthRun();
 
     void setMaxLengthRun(int lengthRun);
+
+    void endWinner();
 }
