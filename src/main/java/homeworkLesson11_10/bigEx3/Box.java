@@ -45,7 +45,7 @@ public class Box<E extends Fruit> {
         return weight;
     }
 
-    public void shift(Box<E> box){
+    public void shift(Box<? extends E> box){
         for (int i = 0; i < box.currentSize; i++) {
             this.add(box.fruit[i]);
             box.fruit[i] = null;
