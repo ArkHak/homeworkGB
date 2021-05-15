@@ -1,5 +1,7 @@
 package homeworkLesson12;
 
+import java.util.Arrays;
+
 public class Main {
     //    1) Создают одномерный длинный массив,
 //    2) Заполняют этот массив единицами;
@@ -10,6 +12,7 @@ public class Main {
 //    *для второго метода замеряете время разбивки массива на 2, просчета каждого из двух массивов и склейки.
 
     static final int SIZE = 10000000;
+    ;
     static final int HALF = SIZE / 2;
 
     public static void main(String[] args) throws InterruptedException {
@@ -23,7 +26,7 @@ public class Main {
         long timerSingle = System.currentTimeMillis();
         stepFour(arrSingle);
         stepsEnd(timerSingle, "methodSingle");
-        System.out.println();
+//        System.out.println(Arrays.toString(arrSingle));
     }
 
     private static void methodDual() throws InterruptedException {
@@ -42,6 +45,10 @@ public class Main {
         System.arraycopy(arrDualOneCharter, 0, arrDual, 0, HALF);
         System.arraycopy(arrDualTwoCharter, 0, arrDual, HALF, HALF);
         stepsEnd(timerDual, "methodDual");
+
+//        System.out.println(Arrays.toString(arrDualOneCharter));
+//        System.out.println(Arrays.toString(arrDualTwoCharter));
+//        System.out.println(Arrays.toString(arrDual));
     }
 
     private static void WorkDualThread(float[] arrDualOneCharter, float[] arrDualTwoCharter) throws InterruptedException {
@@ -50,7 +57,7 @@ public class Main {
         }, "arrDualOneCharter");
 
         var charterTwo = new Thread(() -> {
-            stepFour(arrDualTwoCharter);
+            stepFour(arrDualTwoCharter, HALF);
         }, "arrDualTwoCharter");
         charterOne.start();
         charterTwo.start();
@@ -70,6 +77,13 @@ public class Main {
     private static void stepFour(float[] arr) {
         for (int i = 0; i < arr.length; i++)
             arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+    }
+
+    private static void stepFour(float[] arr, int iTwo) {
+        for (int i = 0; i < arr.length; i++, iTwo++) {
+            iTwo = i + HALF;
+            arr[i] = (float) (arr[i] * Math.sin(0.2f + iTwo / 5) * Math.cos(0.2f + iTwo / 5) * Math.cos(0.4f + iTwo / 2));
+        }
     }
 
     private static void stepsEnd(long timerSingle, String s) {
