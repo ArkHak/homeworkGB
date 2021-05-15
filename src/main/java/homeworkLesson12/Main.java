@@ -12,7 +12,7 @@ public class Main {
     static final int SIZE = 10000000;
     static final int HALF = SIZE / 2;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         methodSingle();
         methodDual();
     }
@@ -23,9 +23,10 @@ public class Main {
         long timerSingle = System.currentTimeMillis();
         stepFour(arrSingle);
         stepsEnd(timerSingle, "methodSingle");
+        System.out.println();
     }
 
-    private static void methodDual() {
+    private static void methodDual() throws InterruptedException {
         float[] arrDual = new float[SIZE];
         float[] arrDualOneCharter = new float[HALF];
         float[] arrDualTwoCharter = new float[HALF];
@@ -43,13 +44,20 @@ public class Main {
         stepsEnd(timerDual, "methodDual");
     }
 
-    private static void WorkDualThread(float[] arrDualOneCharter, float[] arrDualTwoCharter) {
-        new Thread(() -> {
+    private static void WorkDualThread(float[] arrDualOneCharter, float[] arrDualTwoCharter) throws InterruptedException {
+        var charterOne = new Thread(() -> {
             stepFour(arrDualOneCharter);
-        }, "arrDualOneCharter").start();
-        new Thread(() -> {
+        }, "arrDualOneCharter");
+
+        var charterTwo = new Thread(() -> {
             stepFour(arrDualTwoCharter);
-        }, "arrDualTwoCharter").start();
+        }, "arrDualTwoCharter");
+        charterOne.start();
+        charterTwo.start();
+
+        charterOne.join();
+        charterTwo.join();
+
     }
 
 
